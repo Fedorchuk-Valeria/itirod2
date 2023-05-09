@@ -3,21 +3,6 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 
-// const firebaseConfig = {
-// apiKey: "AIzaSyD3KdVLldNnZ0tRn99IYSwcr4nCH3Z_C3U",
-// authDomain: "wifirebase.firebaseapp.com",
-// databaseURL: "https://wifirebase-default-rtdb.firebaseio.com",
-// projectId: "wifirebase",
-// storageBucket: "wifirebase.appspot.com",
-// messagingSenderId: "866141131394",
-// appId: "1:866141131394:web:36d9b215055efecc9c5a9b"
-// };
-          
-// const app = initializeApp(firebaseConfig);
-
-// import {getDatabase, set, get, update, remove, ref, query, child, onValue}
-// from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
-// const database = getDatabase();
 let dbref = ref(database)
 
 
