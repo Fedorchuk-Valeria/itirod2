@@ -1,5 +1,6 @@
 
 import {database, getDatabase, set, get, update, remove, push, ref, query, limitToLast, child, onValue } from './firebaseInitializer.js'
+import {getLessons, getUsers, getModules, getAges} from './fibaseCRUD.js'
 
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 
@@ -30,7 +31,7 @@ loginButton.addEventListener('click', e => {
 
   let dbref = ref(database)
 
-  get(child(dbref, "users")).then( data => {
+  getUsers( data => {
     if(data.exists()){
       const user = data.val().filter(u=>
         u.email === emailInput.value &&
