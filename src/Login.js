@@ -33,7 +33,7 @@ loginButton.addEventListener('click', e => {
 
   getUsers( data => {
   
-      const user = data.val().filter(u=>
+      const user = data.filter(u=>
         u.email === emailInput.value &&
         u.password === passwordInput.value
       )[0]
@@ -43,7 +43,7 @@ loginButton.addEventListener('click', e => {
       }
       else{
         let index = -1
-        data.val().forEach(function (u, i) {
+        data.forEach(function (u, i) {
           if (u.email === user.email && u.password === user.password) {
             index = i
           }
