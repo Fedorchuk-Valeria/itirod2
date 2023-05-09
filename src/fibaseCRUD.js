@@ -1,3 +1,5 @@
+import {database, getDatabase, set, get, update, remove, push, ref, query, limitToLast, child, onValue } from './firebaseInitializer.js'
+
 export function getUsers(thenCallback) {
     get(child(dbref, "users")).then( data => {
         if(data.exists()){
