@@ -1,6 +1,6 @@
 
 import {database, getDatabase, set, get, update, remove, push, ref, query, limitToLast, child, onValue } from './firebaseInitializer.js'
-import {getLessons, getUsers, getModules, getAges} from './fibaseCRUD.js'
+import {getLessons, getUsers, getModules, getModuleById, getAges} from './fibaseCRUD.js'
 
         // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 
@@ -33,10 +33,8 @@ import {getLessons, getUsers, getModules, getAges} from './fibaseCRUD.js'
            getAges(data=> {
                     const age = (data.filter(a => a.name === ageSelect.value))[0];
                     moduleSelect.innerHTML = ""
-                    age.moduleIds.forEach(id => get(child(dbref, "modules/" + id)).then(d=> {
-                        if(d.exists()){
-                            moduleSelect.innerHTML += "<option>" + d.name + "</option>"
-                        }
+                    age.moduleIds.forEach(id => getModuleById(id, d => {
+                        moduleSelect.innerHTML += "<option>" + d.name + "</option>"
                     }))
 
                     const moduleDiv = document.getElementById("moduleDiv")
