@@ -1,5 +1,5 @@
-
 import {database, getDatabase, set, get, update, remove, push, ref, query, limitToLast, child, onValue } from './firebaseInitializer.js'
+import {getLessons, getUsers, getModules, getModuleById, getAges} from './fibaseCRUD.js'
 
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 
@@ -74,23 +74,10 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
         UpdateModules()
         
         function UpdateModules () {
-            
-            
-             
-            get(child(dbref, "modules/")).then( data => {
-                if(data.exists()){
-                    console.log("no query")
-                    console.log(data.val())
-                }
-            })
-        
-            get(query(ref(database, 'modules/'))).then( data => {
-                if(data.exists()){
-
-                    console.log("query")
-                    console.log(data.val())
+            getModules( data => {
+                    console.log(data)
                         
-                    const modulesData = Array.from(data.val())
+                    const modulesData = Array.from(data)
                     
                     let id = 0
                     modules = []
@@ -136,7 +123,7 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
                         `    </div>` +
                         `</li>`
                     }
-                }
+                
             }).then(()=> {
                 let allDeleteModuleButtons = document.querySelectorAll(".deleteModule") 
                 allDeleteModuleButtons.forEach(button=> {
