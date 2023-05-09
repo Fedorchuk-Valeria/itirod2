@@ -32,7 +32,7 @@ loginButton.addEventListener('click', e => {
   let dbref = ref(database)
 
   getUsers( data => {
-    if(data.exists()){
+  
       const user = data.val().filter(u=>
         u.email === emailInput.value &&
         u.password === passwordInput.value
@@ -52,6 +52,6 @@ loginButton.addEventListener('click', e => {
         sessionStorage.setItem('currUserId',index);
         window.location.href = './MainPage.html';
       }
-    }
+    
   })
 })
