@@ -24,6 +24,14 @@ export function getModules(thenCallback) {
     })
 }
 
+export function getModuleById(id, thenCallback) {
+    get(child(dbref, "modules/" + id)).then( data => {
+        if(data.exists()){
+            thenCallback(data.val())
+        }
+    })
+}
+
 export function getAges(thenCallback) {
     return get(child(dbref, "ages/")).then( data => {
         if(data.exists()){
