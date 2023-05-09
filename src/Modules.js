@@ -74,8 +74,22 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
         UpdateModules()
         
         function UpdateModules () {
+            
+            
+             
+            get(child(dbref, "modules/")).then( data => {
+                if(data.exists()){
+                    console.log("no query")
+                    console.log(data.val())
+                }
+            })
+        
             get(query(ref(database, 'modules/'))).then( data => {
                 if(data.exists()){
+
+                    console.log("query")
+                    console.log(data.val())
+                        
                     const modulesData = Array.from(data.val())
                     
                     let id = 0
