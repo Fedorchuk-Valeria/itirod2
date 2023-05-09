@@ -1,5 +1,6 @@
 
 import {database, getDatabase, set, get, update, remove, push, ref, query, limitToLast, child, onValue } from './firebaseInitializer.js'
+import {getLessons, getUsers, getModules, getAges} from './fibaseCRUD.js'
 
         // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 
@@ -29,34 +30,32 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
         const ageSelect = document.getElementById("ageSelect")
 
         ageSelect.addEventListener('change', () => {
-            get(child(dbref, "ages/")).then(data=> {
-                if(data.exists()){
-                    const age = (data.val().filter(a => a.name === ageSelect.value))[0];
+           getAges(data=> {
+                    const age = (data.filter(a => a.name === ageSelect.value))[0];
                     moduleSelect.innerHTML = ""
                     age.moduleIds.forEach(id => get(child(dbref, "modules/" + id)).then(d=> {
                         if(d.exists()){
-                            moduleSelect.innerHTML += "<option>" + d.val().name + "</option>"
+                            moduleSelect.innerHTML += "<option>" + d.name + "</option>"
                         }
                     }))
 
                     const moduleDiv = document.getElementById("moduleDiv")
                     moduleDiv.classList.remove("hidden")
-                }
+                
             })
         })
 
         // ------------------
 
         moduleSelect.addEventListener('change', () => {
-            get(child(dbref, "modules/")).then(data=> {
-                if(data.exists()){
-                    const module = (data.val().filter(a => a.name === moduleSelect.value))[0];
+            getModules(data=> {
+                    const module = (data.filter(a => a.name === moduleSelect.value))[0];
                     themeSelect.innerHTML = ""
                     module.themes.forEach(theme => themeSelect.innerHTML += "<option>" + theme + "</option>")
 
                     const themeDiv = document.getElementById("themeDiv")
                     themeDiv.classList.remove("hidden")
-                }
+                
             })
         })
 
@@ -75,18 +74,16 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
 
             let lastLessonIndex = 0
             let lessons
-            get(child(dbref, "lessons/")).then(data=> {
-                if(data.exists()){
-                    lessons = data.val()
+            getLessons(data=> {
+                    lessons = data
                     lastLessonIndex = lessons.length
-                }
             })
             .then(()=>{
                 let lastLessonId = 0;
 
                 get(query(ref(database, 'lessons/'), limitToLast(1))).then(data=> {
                     if(data.exists()){
-                        lastLessonId = Object.keys(data.val())[0]
+                        lastLessonId = Object.keys(data)[0]
                         console.log(lastLessonId)
                     }
                 })
@@ -114,14 +111,13 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
         UpdateLessons()
 
         function UpdateLessons () {
-            get(child(dbref, "lessons/")).then(async data=> {
-                if(data.exists()){
+            getLessons(async data=> {
                     const lessonContainer = document.getElementById("lessonContainer")
                     const currUserId = sessionStorage.getItem("currUserId")
 
                     if( currUserId !== undefined && currUserId !== null) {
                         
-                        let lessons = Array.from(data.val())
+                        let lessons = Array.from(data)
                         let newLessons = []
 
                         lessons = lessons.filter(lesson => lesson !== null && lesson !== undefined)
@@ -142,13 +138,12 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
 
                                 let weeksPassedCount = Math.round((new Date() - new Date(lesson.startDate))/86400000) / 7
 
-                                await get(child(dbref, "modules/")).then(data=> {
-                                    if(data.exists()){
-                                        const modules = data.val()
-                                        const module = (data.val().filter(a => a.name === lesson.startModule))[0];
+                                await getModules(data=> {
+                                        const modules = data
+                                        const module = (data.filter(a => a.name === lesson.startModule))[0];
                                         // let moduleIndex = modules.indexOf(module)
                                         let moduleIndex = -1
-                                        data.val().forEach(function (m, i) {
+                                        data.forEach(function (m, i) {
                                             if (m.name === module.name) {
                                                 moduleIndex = i
                                             }
@@ -180,7 +175,7 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
                                                 break
                                             }
                                         }
-                                    }
+                                    
                                 }) 
                             }
                         }
@@ -201,7 +196,7 @@ import {database, getDatabase, set, get, update, remove, push, ref, query, limit
                         `</li>`
                         )
                     }
-                }
+                
             })
         }
         
