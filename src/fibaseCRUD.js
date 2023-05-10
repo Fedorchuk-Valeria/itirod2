@@ -53,7 +53,7 @@ export function setLesson(id, lesson, userId) {
         startTheme: lesson.startTheme,
         startDate: lesson.startDate,
         lessonType: lesson.lessonType,
-        userId: userId
+        userId: lesson.userId
     }).then(() => console.log("ok"))
     .catch(error => console.log(error))
 }
