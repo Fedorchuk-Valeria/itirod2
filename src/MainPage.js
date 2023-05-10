@@ -58,13 +58,17 @@ import {getLessons, getUsers, getModules, getModuleById, getAges} from './fibase
             })
             .then(()=>{
                 let lastLessonId = 0;
-
-                get(query(ref(database, 'lessons/'), limitToLast(1))).then(data=> {
-                    if(data.exists()){
-                        lastLessonId = Object.keys(data)[0]
-                        console.log(lastLessonId)
-                    }
+                    
+                getLastLesson(data=> {
+                    lastLessonId = Object.keys(data)[0]
+                    console.log(lastLessonId)
                 })
+//                 get(query(ref(database, 'lessons/'), limitToLast(1))).then(data=> {
+//                     if(data.exists()){
+//                         lastLessonId = Object.keys(data)[0]
+//                         console.log(lastLessonId)
+//                     }
+//                 })
                 .then(()=>{
                     console.log("lessons/" + lastLessonIndex.toString())
                         
