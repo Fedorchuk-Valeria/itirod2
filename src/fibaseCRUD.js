@@ -46,7 +46,7 @@ export function getAges(thenCallback) {
     })
 }
 
-export function setLesson(id, lesson, userId) {
+export function setLesson(id, lesson) {
     return set(ref(database, "lessons/" + id), {
         age: lesson.age,
         startModule: lesson.startModule,
