@@ -1,6 +1,6 @@
 
 import {database, getDatabase, set, get, update, remove, push, ref, query, limitToLast, child, onValue } from './firebaseInitializer.js'
-import {getLessons, getUsers, getModules, getModuleById, getAges} from './fibaseCRUD.js'
+import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges, setLesson} from './fibaseCRUD.js'
 
         let dbref = ref(database)
         const dateInput = document.getElementById("dateInput")
