@@ -1,10 +1,7 @@
 import {database, getDatabase, set, get, update, remove, push, ref, query, limitToLast, child, onValue } from './firebaseInitializer.js'
-
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+import {getLessons, getUsers, getModules, getModuleById, getAges, setModule, removeModule} from './fibaseCRUD.js'
 
 let dbref = ref(database)
-
 
       //_________________________________________________________________________________________
       let lessons = []
@@ -14,15 +11,14 @@ let dbref = ref(database)
       UpdateLessons()
 
       function UpdateLessons () {
-        get(query(ref(database, 'lessons/'))).then( async data => {
-          if(data.exists()){
+        getLessons( async data => {
               
             const lessonContainer = document.getElementById("lessonContainer")
             const currUserId = sessionStorage.getItem("currUserId")
 
             if( currUserId !== undefined && currUserId !== null) {
                         
-              const lessonsData = Array.from(data.val())
+              const lessonsData = Array.from(data)
               console.log(lessonsData)
               let id = 0
               lessons = []
@@ -57,8 +53,6 @@ let dbref = ref(database)
                 let sunday = new Date()
                 sunday.setDate(monday.getDate() + 6)
                 const lessonStartDate = new Date(lesson.startDate)
-                // console.log(lesson.startDate)
-                // console.log(lessonStartDate)
                 
                 if(lesson.lessonType !== "regular" && 
                 !(monday < lessonStartDate && lessonStartDate < sunday) // дата не в этой неделе
@@ -73,19 +67,15 @@ let dbref = ref(database)
 
                 let sameDayOfWeek = new Date()
                 sameDayOfWeek.setDate(monday.getDate() + new Date(lesson.startDate).getDay() -1)
-
-                // console.log(sameDayOfWeek)
-                // console.log(new Date(lesson.startDate))
                 
                 let weeksPassedCount = Math.round((sameDayOfWeek - lessonStartDate)/86400000) / 7 // сравнивать не с сегодня
                 
-                await get(child(dbref, "modules/")).then(data=> {
-                    if(data.exists()){
-                    const modules = data.val()
-                    const module = (data.val().filter(a => a.name === lesson.startModule))[0];
+                await getModules( data=> {
+                    const modules = data
+                    const module = (data.filter(a => a.name === lesson.startModule))[0];
 
                     let moduleIndex = -1
-                    data.val().forEach(function (m, i) {
+                    data.forEach(function (m, i) {
                         if (m.name === module.name) {
                           moduleIndex = i
                         }
@@ -112,16 +102,14 @@ let dbref = ref(database)
                             }
                             
                             weeksPassedCount -= 1
-                            // console.log(weeksPassedCount)
                             
                         })
                     }
                       catch(error){ 
-                        // console.log(newLessons)
                         break
                       }
                     }
-                  }
+                  
                 })
               }
                         
@@ -179,7 +167,7 @@ let dbref = ref(database)
                 }
               })
             }
-          }
+          
         }).then(()=> {
           let deleteLessonButtons = document.querySelectorAll(".deleteLessonButton");
 
