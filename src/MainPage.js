@@ -67,16 +67,27 @@ import {getLessons, getUsers, getModules, getModuleById, getAges} from './fibase
                 })
                 .then(()=>{
                     console.log("lessons/" + lastLessonIndex.toString())
+                        
+                    setLesson(
+                        (parseInt(lastLessonId, 10) + 1).toString() ,
+                        {
+                            age: ageSelect.value,
+                            startModule: moduleSelect.value,
+                            startTheme: themeSelect.value,
+                            startDate: dateInput.value,
+                            lessonType: typeSelect.value,
+                            userId: sessionStorage.getItem("currUserId")
+                        })
 
-                    set(ref(database, "lessons/" + (parseInt(lastLessonId, 10) + 1).toString()), {
-                        age: ageSelect.value,
-                        startModule: moduleSelect.value,
-                        startTheme: themeSelect.value,
-                        startDate: dateInput.value,
-                        lessonType: typeSelect.value,
-                        userId: sessionStorage.getItem("currUserId")
-                    }).then(() => console.log("ok"))
-                    .catch(error => console.log(error))
+//                     set(ref(database, "lessons/" + (parseInt(lastLessonId, 10) + 1).toString()), {
+//                         age: ageSelect.value,
+//                         startModule: moduleSelect.value,
+//                         startTheme: themeSelect.value,
+//                         startDate: dateInput.value,
+//                         lessonType: typeSelect.value,
+//                         userId: sessionStorage.getItem("currUserId")
+//                     }).then(() => console.log("ok"))
+//                     .catch(error => console.log(error))
 
                     UpdateLessons()
                 })
