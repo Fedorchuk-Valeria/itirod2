@@ -53,7 +53,7 @@ import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges,
             let lastLessonIndex = 0
             let lessons
             getLessons(data=> {
-                    lessons = data
+                    lessons = Object.values(data)
                     lastLessonIndex = lessons.length
             })
             .then(()=>{
