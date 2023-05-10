@@ -105,6 +105,7 @@ import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges,
 
         function UpdateLessons () {
             getLessons(async data=> {
+                    console.log(data)
                     const lessonContainer = document.getElementById("lessonContainer")
                     const currUserId = sessionStorage.getItem("currUserId")
 
