@@ -19,11 +19,9 @@ let dbref = ref(database)
             if( currUserId !== undefined && currUserId !== null) {
                         
               const lessonsData = Object.values(data)
-              console.log(lessonsData)
               let id = 0
               lessons = []
               console.log(data)
-              console.log(lessonsData)
 
               lessonsData.forEach(lesson => {
                   if(lesson === null || lesson ===  undefined) {
@@ -39,7 +37,7 @@ let dbref = ref(database)
                 newLessons = []
                 
                 lessons = lessons.filter(lesson => lesson !== null && lesson !== undefined)
-              .filter(lesson => lesson.userId === sessionStorage.getItem("currUserId"))
+                  .filter(lesson => lesson.userId === sessionStorage.getItem("currUserId"))
               // .sort((a, b) => new Date(a.startDate) > new Date(b.startDate)? 1 : -1)
 
               for (let index = 0; index < lessons.length; index++) {
@@ -173,8 +171,6 @@ let dbref = ref(database)
         }).then(()=> {
           let deleteLessonButtons = document.querySelectorAll(".deleteLessonButton");
 
-          console.log(deleteLessonButtons)
-
           deleteLessonButtons.forEach(button=> {
             button.addEventListener('click', e => {
               e.preventDefault()
@@ -192,8 +188,6 @@ let dbref = ref(database)
           })
           
           let editLessonButtons = document.querySelectorAll(".editLessonButton");
-
-          console.log(deleteLessonButtons)
 
           editLessonButtons.forEach(button=> {
               button.addEventListener('click', e => {
