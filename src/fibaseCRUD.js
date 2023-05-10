@@ -19,7 +19,7 @@ export function getLessons (thenCallback) {
 export function getLastLesson (thenCallback) {
     return get(query(ref(database, 'lessons/'), limitToLast(1))).then(data=> {
         if(data.exists()){
-            thenCallback()
+            thenCallback(data.val())
         }
     })
 }
