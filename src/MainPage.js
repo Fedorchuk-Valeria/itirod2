@@ -53,8 +53,8 @@ import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges,
             let lastLessonIndex = 0
             let lessons
             getLessons(data=> {
-//                     lessons = Object.values(data)
-                    lessons = Array.from(data)
+                    lessons = Object.values(data)
+//                     lessons = Array.from(data)
                     lastLessonIndex = lessons.length
             })
             .then(()=>{
@@ -112,8 +112,8 @@ import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges,
 
                     if( currUserId !== undefined && currUserId !== null) {
                         
-//                         let lessons = Object.values(data)
-                        let lessons = Array.from(data)
+                        let lessons = Object.values(data)
+//                         let lessons = Array.from(data)
                         let newLessons = []
 
                         lessons = lessons.filter(lesson => lesson !== null && lesson !== undefined)
@@ -122,6 +122,7 @@ import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges,
 
                         for (let index = 0; index < lessons.length; index++) {
                             const lesson = lessons[index]
+                            console.log(lesson)
                             // if (lesson === null || lesson === undefined) continue
 
                             if ((new Date(lesson.startDate)).getDate() === (new Date()).getDate()){
