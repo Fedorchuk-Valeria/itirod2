@@ -111,7 +111,7 @@ import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges,
 
                     if( currUserId !== undefined && currUserId !== null) {
                         
-                        let lessons = Array.from(data)
+                        let lessons = data
                         let newLessons = []
 
                         lessons = lessons.filter(lesson => lesson !== null && lesson !== undefined)
