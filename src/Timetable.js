@@ -18,10 +18,12 @@ let dbref = ref(database)
 
             if( currUserId !== undefined && currUserId !== null) {
                         
-              const lessonsData = Array.from(data)
+              const lessonsData = Object.values(data)
               console.log(lessonsData)
               let id = 0
               lessons = []
+              console.log(data)
+              console.log(lessonsData)
 
               lessonsData.forEach(lesson => {
                   if(lesson === null || lesson ===  undefined) {
