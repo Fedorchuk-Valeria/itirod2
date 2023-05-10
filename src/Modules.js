@@ -1,8 +1,6 @@
 import {database, getDatabase, set, get, update, remove, push, ref, query, limitToLast, child, onValue } from './firebaseInitializer.js'
 import {getLessons, getUsers, getModules, getModuleById, getAges, setModule, removeModule} from './fibaseCRUD.js'
 
-        let dbref = ref(database)
-
         const moduleContainer = document.getElementById("moduleContainer")
         const moduleInput = document.getElementById("moduleInput")
         const addThemeButton = document.getElementById("addThemeButton")  
@@ -36,13 +34,6 @@ import {getLessons, getUsers, getModules, getModuleById, getAges, setModule, rem
                 }
             ).then(() => {console.log("ok"); UpdateModules()})
             .catch(error => console.log(error))
-            
-//             set(ref(database, "modules/" + (parseInt(modules[modules.length-1].id, 10) + 1).toString()), {
-//                 name: moduleInput.value,
-//                 themes: themes
-//             })
-//             .then(() => {console.log("ok"); UpdateModules()})
-//             .catch(error => console.log(error))
         })
         
         //_________________________________________________________________________________________
@@ -113,7 +104,6 @@ import {getLessons, getUsers, getModules, getModuleById, getAges, setModule, rem
                     button.addEventListener('click', () => {
                         const id = button.id
                         removeModule( id.toString() )
-//                         remove(ref(database, "modules/" + id.toString()))
                         UpdateModules()
                     })
                 })
