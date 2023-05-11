@@ -1,3 +1,5 @@
+import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges, setLesson} from './fibaseCRUD.js'
+
 export function UpdateLessons () {
             return getLessons(async data=> {
                     console.log(data)
