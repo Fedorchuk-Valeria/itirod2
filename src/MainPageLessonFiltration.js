@@ -74,5 +74,5 @@ export function UpdateLessons () {
 
                         return newLessons
                 
-            })
+            }
         }
