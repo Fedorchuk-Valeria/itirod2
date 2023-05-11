@@ -23,16 +23,16 @@ import {getLessons, getUsers, getModules, getModuleById, getAges, setModule, rem
           age.moduleIds.forEach(id => get(child(dbref, "modules/" + id)).then(d=> {
             if(d.exists()){
 
-              moduleSelect.innerHTML += "<option id=" + d.val().name + ">" + d.val().name + "</option>"
+              moduleSelect.innerHTML += "<option id=" + d.name + ">" + d.name + "</option>"
 
-              if( d.val().name === currLesson.startModule) {
+              if( d.name === currLesson.startModule) {
 
                 moduleSelect.value = currLesson.startModule;
 
                 themeSelect.innerHTML = ""
-                console.log(d.val().themes)
+                console.log(d.themes)
 
-                d.val().themes.forEach( theme => 
+                d.themes.forEach( theme => 
                   themeSelect.innerHTML += "<option>" + theme + "</option>"
                 )
                 themeSelect.value = currLesson.startTheme
