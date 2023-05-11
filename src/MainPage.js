@@ -106,9 +106,10 @@ import {UpdateLessons} from './MainPageLessonFiltration.js'
 
         reload()
 
-        const reload => {
-        lessonContainer.innerHTML = ""
-        UpdateLessons().map(l => lessonContainer.innerHTML +=
+        const reload = () => {
+                UpdateLessons().then(lessons => {
+                        lessonContainer.innerHTML = ""
+                        lessons().map(l => lessonContainer.innerHTML +=
                         `<li class="centered_row gray_background_color full_width indented">` +
                         `    <p>${new Date(l.startDate).getHours()} : ${new Date(l.startDate).getMinutes()}</p>` +
                         `    <div class="lesson space_between">` +
@@ -119,6 +120,8 @@ import {UpdateLessons} from './MainPageLessonFiltration.js'
                         `    </div>` +
                         `</li>`
                         )
+                })      
+        
         }
                         
                     
