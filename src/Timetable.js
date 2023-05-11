@@ -8,7 +8,7 @@ let dbref = ref(database)
       let lessons = []
       let newLessons = []
       //_________________________________________________________________________________________
-      
+      function reload() {
       UpdateLessons().then(lessons => {
       const getLessonHTML = (lesson) => 
               `<li class="space-between indented">` +
@@ -78,7 +78,7 @@ let dbref = ref(database)
               thursdayLessons.innerHTML = " "
               fridayLessons.innerHTML = " "
               saturdayLessons.innerHTML = " "
-              UpdateLessons()
+              reload()
             })
           })
           
@@ -99,6 +99,7 @@ let dbref = ref(database)
               
             })
       })
+  }
 
       
 
