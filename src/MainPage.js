@@ -107,6 +107,7 @@ import {UpdateLessons} from './MainPageLessonFiltration.js'
         reload()
 
         function reload() {
+                console.log(UpdateLessons())
                 UpdateLessons().then(lessons => {
                         lessonContainer.innerHTML = ""
                         lessons.map(l => lessonContainer.innerHTML +=
