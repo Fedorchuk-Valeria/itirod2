@@ -72,6 +72,10 @@ export function removeModule(id) {
     return remove(ref(database, "modules/" + id))
 }
 
+export function removeLesson(id) {
+    return remove(ref(database, "lessons/" + id))
+}
+
 export function updateLesson(id, lesson, thenCallback) {
     return update(ref(database, "lessons/" + id), {
         startDate: lesson.startDate,
