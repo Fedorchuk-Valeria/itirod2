@@ -109,7 +109,7 @@ import {UpdateLessons} from './MainPageLessonFiltration.js'
         function reload() {
                 UpdateLessons().then(lessons => {
                         lessonContainer.innerHTML = ""
-                        lessons().map(l => lessonContainer.innerHTML +=
+                        lessons.map(l => lessonContainer.innerHTML +=
                         `<li class="centered_row gray_background_color full_width indented">` +
                         `    <p>${new Date(l.startDate).getHours()} : ${new Date(l.startDate).getMinutes()}</p>` +
                         `    <div class="lesson space_between">` +
