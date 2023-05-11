@@ -1,5 +1,6 @@
 import {database, getDatabase, set, get, update, remove, push, ref, query, limitToLast, child, onValue } from './firebaseInitializer.js'
 import {getLessons, getUsers, getModules, getModuleById, getAges, setModule, removeModule} from './fibaseCRUD.js'
+import {UpdateLessons} from './TimetableLessonFiltration.js'
 
 let dbref = ref(database)
 
