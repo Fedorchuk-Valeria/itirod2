@@ -1,7 +1,7 @@
 import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges, setLesson} from './fibaseCRUD.js'
 
 export function UpdateLessons () {
-    const func = getLessons( data=> {
+    const func = getLessons( async data=> {
 //         console.log(data)
         const lessonContainer = document.getElementById("lessonContainer")
         const currUserId = sessionStorage.getItem("currUserId")
@@ -31,7 +31,7 @@ export function UpdateLessons () {
 
                     let weeksPassedCount = Math.round((new Date() - new Date(lesson.startDate))/86400000) / 7
 
-                    getModules(data=> {
+                    await getModules(data=> {
                         const modules = data
                         const module = (data.filter(a => a.name === lesson.startModule))[0];
                         // let moduleIndex = modules.indexOf(module)
