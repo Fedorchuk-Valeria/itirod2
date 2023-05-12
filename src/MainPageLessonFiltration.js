@@ -1,7 +1,7 @@
 import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges, setLesson} from './fibaseCRUD.js'
 
 export function UpdateLessons () {
-    return getLessons( data=> {
+    const func = getLessons( data=> {
         console.log(data)
         const lessonContainer = document.getElementById("lessonContainer")
         const currUserId = sessionStorage.getItem("currUserId")
@@ -78,4 +78,7 @@ export function UpdateLessons () {
         }
         return 'opa'
     })
+    
+    console.log(func)
+    return func
 }
