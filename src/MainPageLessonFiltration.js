@@ -76,7 +76,7 @@ export function UpdateLessons () {
             return newLessons
     
         }
-        return 'opa'
+        
     })
     
     
