@@ -2,7 +2,7 @@ import {getLessons, getLastLesson, getUsers, getModules, getModuleById, getAges,
 
 export function UpdateLessons () {
     const func = getLessons( data=> {
-        console.log(data)
+//         console.log(data)
         const lessonContainer = document.getElementById("lessonContainer")
         const currUserId = sessionStorage.getItem("currUserId")
 
@@ -18,7 +18,7 @@ export function UpdateLessons () {
 
             for (let index = 0; index < lessons.length; index++) {
                 const lesson = lessons[index]
-                console.log(lesson)
+//                 console.log(lesson)
                 // if (lesson === null || lesson === undefined) continue
 
                 if ((new Date(lesson.startDate)).getDate() === (new Date()).getDate()){
