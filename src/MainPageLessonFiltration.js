@@ -79,6 +79,6 @@ export function UpdateLessons () {
         return 'opa'
     })
     
-    console.log(func())
+    console.log(func)
     return func
 }
