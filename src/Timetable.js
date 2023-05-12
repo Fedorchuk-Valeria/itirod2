@@ -61,7 +61,7 @@ let dbref = ref(database)
                   saturdayLessons.innerHTML += getLessonHTML(lesson)
                 }
               })
-            }
+            })
           
         }).then(()=> {
           let deleteLessonButtons = document.querySelectorAll(".deleteLessonButton");
