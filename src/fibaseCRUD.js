@@ -10,9 +10,9 @@ export function getUsers(thenCallback) {
 
 export function getLessons (thenCallback) {
     return get(child(dbref, "lessons/")).then( data => {
-        if(data.exists()){
+//         if(data.exists()){
             thenCallback(data.val())
-        }
+//         }
     })
 }
 
